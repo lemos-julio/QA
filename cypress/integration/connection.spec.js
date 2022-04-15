@@ -1,19 +1,19 @@
         
 describe('Create a Connection', ()=>{
-    it('Criando Connection', ()=>{
-        cy.visit('https://app.sheetgo.com/login').wait(10000)
+    it('Creating Connection', ()=>{
+        cy.visit('https://app.sheetgo.com/login').wait(40000)
         cy.get('button[data-onboarding-id="new-workflow"]').click()
         cy.get('span:contains(Create connection)').click()
     })
 
 
-    it('Set a name for Connection',()=>{
+    it('Set a name for the Connection',()=>{
         cy.get('input[id="connection-builder-name-input"]')
             .clear()
             .type('Connection-Test-SheetGO')
     })        
     
-    it('Select a Destiny for Connection',() =>{
+    it('Select a destination for Connection',() =>{
         cy.contains('Single file')
             .should('be.visible')
             .click()
@@ -25,12 +25,12 @@ describe('Create a Connection', ()=>{
 
         cy.contains('Next').click()
         cy.get('span:contains(Send data to a single spreadsheet)').should('be.visible').click()
-        cy.contains('Finish and save').should('be.visible').click()
-        cy.wait(10000)
+        cy.contains('Finish and save').should('be.visible').click().wait(1000)
+        
     })
 
     it('Delete the Connection', ()=>{
-        //cy.get('path[d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"]').click({force:true})
+        //cy.get('path[d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"]').click({force:true}) 
         cy.get('button[aria-label="More"]').click()
         cy.contains('Delete').click({force:true})
         cy.contains('Delete connection').click()
